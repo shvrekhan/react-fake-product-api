@@ -1,9 +1,9 @@
+.parent {
+  display: flex;
+  flex-direction: column;
+}
 .card-parent {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  
 }
-
-
-
