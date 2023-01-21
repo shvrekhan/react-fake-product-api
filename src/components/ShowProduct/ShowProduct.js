@@ -14,21 +14,40 @@ class ShowProduct extends React.Component {
             fetchedProducts: [],
             apiFetchError: false,
             errorMsg: "",
+            isLoading: false,
+            isFetchFailed: false,
+            failedMsg: "",
         };
         this.API_ENDPOINT = "https://fakestoreapi.com/products";
     }
 
     fetchedProductsViaApi = () => {
-        axios.get("https://fakestoreapi.com/products")
+        axios.get(this.API_ENDPOINT)
             .then((response) => {
-                console.log("21");
-                const fetchedProducts = response.data;
-                this.setState({
-                    fetchedProducts
-                });
+                if (response.data.length === 0) {
+                    this.setState({
+                        apiFetchError: true,
+                        failedMsg: "!! NO product to Show.",
+                        fetchedProducts: [],
+                        isLoading: false
+                    })
+
+                } else {
+                    const fetchedProducts = response.data;
+                    this.setState({
+                        fetchedProducts,
+                        isLoading: false,
+                        apiFetchError: false,
+                    });
+                }
             })
             .catch((error) => {
-                console.log(error);
+                this.setState({
+                    apiFetchError: true,
+                    failedMsg: "Api fetch failed Please try after some time.",
+                    fetchedProducts: [],
+                    isLoading: false
+                })
             })
 
     }
@@ -37,29 +56,35 @@ class ShowProduct extends React.Component {
         return (
             <>
                 <Navbar />
-                <Loader />
-                {console.log(this.state.fetchedProducts)}
-                <div className="card-parent">
-                    {this.state.fetchedProducts.map((current) => {
-                        return (
-                            <Card
-                                key={current.id}
-                                title={current.title}
-                                img={current.image}
-                                price={current.price}
-                                details={current.description}
-                                rate={current.rating.rate}
-                                count={current.rating.count}
-                            />)
-                    })}
-                </div>
+
+                {this.state.isLoading ? <Loader /> :
+                    this.state.apiFetchError ? <h1 className="error">{this.state.failedMsg}</h1> :
+                        <div className="card-parent">
+                            {this.state.fetchedProducts.map((current) => {
+                                return (
+                                    <Card
+                                        key={current.id}
+                                        title={current.title}
+                                        category={current.category}
+                                        img={current.image}
+                                        price={current.price}
+                                        details={current.description}
+                                        rate={current.rating.rate}
+                                        count={current.rating.count}
+                                    />)
+                            })}
+                        </div>
+                }
+
             </>
         )
     }
 
 
     componentDidMount() {
-        this.fetchedProductsViaApi();
+        this.setState({
+            isLoading: true
+        }, this.fetchedProductsViaApi);
     }
 }
 
