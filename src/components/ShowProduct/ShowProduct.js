@@ -56,27 +56,28 @@ class ShowProduct extends React.Component {
     render() {
         return (
             <>
-                <Navbar />
+                <div className="parent">
+                    <Navbar />
 
-                {this.state.isLoading ? <Loader /> :
-                    this.state.apiFetchError ? <h1 className="error">{this.state.failedMsg}</h1> :
-                        <div className="card-parent">
-                            {this.state.fetchedProducts.map((current) => {
-                                return (
-                                    <Card
-                                        key={current.id}
-                                        title={current.title}
-                                        category={current.category}
-                                        img={current.image}
-                                        price={current.price}
-                                        details={current.description}
-                                        rate={current.rating.rate}
-                                        count={current.rating.count}
-                                    />)
-                            })}
-                        </div>
-                }
-
+                    {this.state.isLoading ? <Loader /> :
+                        this.state.apiFetchError ? <h1 className="error">{this.state.failedMsg}</h1> :
+                            <div className="card-parent">
+                                {this.state.fetchedProducts.map((current) => {
+                                    return (
+                                        <Card
+                                            key={current.id}
+                                            title={current.title}
+                                            category={current.category}
+                                            img={current.image}
+                                            price={current.price}
+                                            details={current.description}
+                                            rate={current.rating.rate}
+                                            count={current.rating.count}
+                                        />)
+                                })}
+                            </div>
+                    }
+                </div>
             </>
         )
     }
