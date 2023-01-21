@@ -1,0 +1,14 @@
+.Card {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 25vw;
+  height: 50vh;
+  border: 1px solid red;
+}
+
+.Card > img {
+  width: 60%;
+  height: 40%;
+}
+
