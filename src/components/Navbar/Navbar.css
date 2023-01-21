@@ -24,3 +24,12 @@
   font-size: 1.3rem;
   font-weight: bold;
 }
+
+@media screen and (max-device-width: 578px) {
+  .nav-parent > .nav-logo {
+    align-self: center;
+  }
+  .nav-list {
+    display: none;
+  }
+}
