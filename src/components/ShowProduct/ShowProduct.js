@@ -22,6 +22,7 @@ class ShowProduct extends React.Component {
     }
 
     fetchedProductsViaApi = () => {
+
         axios.get(this.API_ENDPOINT)
             .then((response) => {
                 if (response.data.length === 0) {
