@@ -1,0 +1,26 @@
+.nav-parent {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #2874f0;
+  color: white;
+}
+.nav-parent > .nav-logo {
+  font-size: 2rem;
+  font-weight: bolder;
+}
+.nav-list {
+  align-self: center;
+  flex-basis: 50%;
+}
+
+.nav-list-parent {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-list-item {
+  margin-top: 0.5rem;
+  list-style-type: none;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
