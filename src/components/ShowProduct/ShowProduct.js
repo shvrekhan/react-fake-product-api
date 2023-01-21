@@ -1,6 +1,10 @@
 import axios from "axios";
 import React from "react";
 import Navbar from "../Navbar/Navbar";
+import Card from "../Card/Card";
+import Loader from "../Loader/Loader";
+import "./ShowProduct.css"
+
 class ShowProduct extends React.Component {
 
     constructor(props) {
@@ -19,7 +23,6 @@ class ShowProduct extends React.Component {
             .then((response) => {
                 console.log("21");
                 const fetchedProducts = response.data;
-                // console.log(fetchedProducts);
                 this.setState({
                     fetchedProducts
                 });
@@ -34,10 +37,22 @@ class ShowProduct extends React.Component {
         return (
             <>
                 <Navbar />
+                <Loader />
                 {console.log(this.state.fetchedProducts)}
-                {this.state.fetchedProducts.map((current) => {
-                    return <h1 key={current.id}>{current.title}</h1>
-                })}
+                <div className="card-parent">
+                    {this.state.fetchedProducts.map((current) => {
+                        return (
+                            <Card
+                                key={current.id}
+                                title={current.title}
+                                img={current.image}
+                                price={current.price}
+                                details={current.description}
+                                rate={current.rating.rate}
+                                count={current.rating.count}
+                            />)
+                    })}
+                </div>
             </>
         )
     }
