@@ -4,11 +4,14 @@
   align-content: center;
   width: 25vw;
   height: 50vh;
-  border-radius: 0.5rem;
+  border-radius: 0.9rem;
   background-color: white;
   margin-bottom: 0.9rem;
   margin-top: 0.9rem;
   padding: 1rem;
+}
+.Card:hover {
+  box-shadow: 5px 10px #888888;
 }
 
 .Card > img {
@@ -19,7 +22,7 @@
 }
 
 .Card > img:hover {
-  transform: scale(1.09);
+  transform: scale(1.2);
 }
 .card-category {
   flex-basis: 12%;
@@ -33,6 +36,10 @@
   flex-basis: 12%;
   font-size: 1rem;
   font-weight: bold;
+}
+.card-title:hover {
+  color: #2874f0;
+  cursor: pointer;
 }
 
 .rate-count {
@@ -63,6 +70,8 @@ button {
 
 button:hover {
   cursor: pointer;
+  background-color: #f4631a;
+  
 }
 
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
